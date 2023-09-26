@@ -10,7 +10,7 @@ class InscriptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username')
+            ->add('pseudo')
             ->add('email')
             ->add('password')
             ->add('add', SubmitType::class)
