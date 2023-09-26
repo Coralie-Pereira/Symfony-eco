@@ -14,9 +14,10 @@ class InscriptionType extends AbstractType
         $builder
             ->add('pseudo', TextType::class, [
                 'attr' => ['class' => 'text-3xl font-bold underline'],
-                'label' => 'Mathis', // Le libellé du champ
+                'label' => 'Username', // Le libellé du champ
                 'label_attr' => ['class' => 'required'] // Les attributs du libellé
             ])
+            ->add('pseudo')
             ->add('email')
             ->add('password')
             ->add('add', SubmitType::class)
