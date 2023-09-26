@@ -1,0 +1,10 @@
+
+{% for challenge in challengeList %}
+
+<p>Pseudo : {{challenge.getTitle()}}</p>
+<p>Points : {{challenge.getPoints()}}</p>
+<p>Category : {{challenge.getCategory()}}</p>
+<p>Date finale : {{challenge.getDeadline()|date("d/m/Y")}}
+<p>----------------------------------------------</p>
+{% endfor %}
+
