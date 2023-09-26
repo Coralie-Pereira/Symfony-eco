@@ -29,14 +29,16 @@ class Challenge
     #[ORM\Column]
     private ?int $points = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateline = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $created_by = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $createdBy = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $deadline = null;
 
     public function getId(): ?int
     {
@@ -103,30 +105,8 @@ class Challenge
         return $this;
     }
 
-    public function getDateline(): ?\DateTimeInterface
-    {
-        return $this->dateline;
-    }
 
-    public function setDateline(\DateTimeInterface $dateline): static
-    {
-        $this->dateline = $dateline;
-
-        return $this;
-    }
-
-    public function getCreatedBy(): ?string
-    {
-        return $this->created_by;
-    }
-
-    public function setCreatedBy(string $created_by): static
-    {
-        $this->created_by = $created_by;
-
-        return $this;
-    }
-
+   
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->created_at;
@@ -135,6 +115,30 @@ class Challenge
     public function setCreatedAt(\DateTimeImmutable $created_at): static
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?User
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?User $createdBy): static
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    public function getDeadline(): ?\DateTimeInterface
+    {
+        return $this->deadline;
+    }
+
+    public function setDeadline(\DateTimeInterface $deadline): static
+    {
+        $this->deadline = $deadline;
 
         return $this;
     }
