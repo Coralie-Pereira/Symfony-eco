@@ -11,6 +11,7 @@ class AdminType extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('points')
             ->add('add', SubmitType::class)
         ;
     }
