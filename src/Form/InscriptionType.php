@@ -13,6 +13,7 @@ class InscriptionType extends AbstractType
             ->add('username')
             ->add('email')
             ->add('password')
+            ->add('add', SubmitType::class)
         ;
     }
 }
