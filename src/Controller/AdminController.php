@@ -48,4 +48,12 @@ class AdminController extends AbstractController
         return $this->render('admin-challenge.html.twig', ['form' => $form->createView()]);
     }
     
+    #[Route("/admin/delete-challenge/{id}", name:"admin_delete_challenge")]
+    public function deleteChallenge($id){
+        $challenge = $this->getDoctrine()->getRepository(Challenge::class)->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($challenge);
+        $em->flush();
+        return $this->redirectToRoute('admin_add_challenge');
+    }
 }
