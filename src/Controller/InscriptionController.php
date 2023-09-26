@@ -23,9 +23,19 @@ class InscriptionController extends AbstractController
         $user -> setCreatedAt(new \DateTimeImmutable());
         $em->persist($user); // on effectue les mise à jours internes
         $em->flush(); // on effectue la mise à jour vers la base de données
-        return $this->redirectToRoute('app_home', ['id' => $user->getId()]); // on redirige vers la route show_task avec l'id du post créé ou modifié 
+        return $this->redirectToRoute('route_username', ['username' => $user->getPseudo()]); // on redirige vers la route show_task avec l'id du post créé ou modifié 
       }
       
       return $this->render('inscription.html.twig', ['form' => $form->createView()]);
+      // return $this->redirectToRoute('route_username', ['username' => $user->getPseudo()]);
+    }
+
+
+    /**
+     * @Route("/{username}", name="route_username")
+     */
+    public function username($username)
+    {
+        return $this->render('profile.html.twig', ['username' => $username]);
     }
 }
