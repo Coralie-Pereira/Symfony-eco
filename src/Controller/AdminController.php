@@ -35,9 +35,9 @@ class AdminController extends AbstractController
     return $this->render('admin-challenge.html.twig', ['form' => $form->createView()]);
     }
 
-    #[Route("/admin/edit-challenge", name:"admin_edit_challenge")]
-    public function editChallenge(Request $request){
-        $challenge = $this->getDoctrine()->getRepository(Challenge::class)->find(1);
+    #[Route("/admin/edit-challenge/{id}", name:"admin_edit_challenge")]
+    public function editChallenge(Request $request, $id){
+        $challenge = $this->getDoctrine()->getRepository(Challenge::class)->find($id);
         $form = $this->createForm(AdminChallengeType::class, $challenge);
         $form->handleRequest($request); // hydratation du form 
         if($form->isSubmitted() && $form->isValid()){ // test si le formulaire a été soumis et s'il est valide
