@@ -12,11 +12,11 @@ class InscriptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pseudo', TextType::class, [
-                'attr' => ['class' => 'text-3xl font-bold underline'],
-                'label' => 'Username', // Le libellé du champ
-                'label_attr' => ['class' => 'required'] // Les attributs du libellé
-            ])
+            // ->add('pseudo', TextType::class, [
+            //     'attr' => ['class' => 'text-3xl font-bold underline'],
+            //     'label' => 'Username', // Le libellé du champ
+            //     'label_attr' => ['class' => 'required'] // Les attributs du libellé
+            // ])
             ->add('pseudo')
             ->add('email')
             ->add('password')
