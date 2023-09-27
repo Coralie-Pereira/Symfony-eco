@@ -21,7 +21,8 @@ class AdminController extends AbstractController
 
     #[Route("/admin", name:"admin_pannel")]
     public function showPannel(){
-        return $this->render('admin-pannel.html.twig');
+        $challenges = $this -> getDoctrine()->getRepository(Challenge::class)->findAll();
+        return $this->render('admin-pannel.html.twig', ['challengeList' => $challenges]);
     }
 
 
