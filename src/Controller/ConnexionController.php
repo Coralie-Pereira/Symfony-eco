@@ -59,8 +59,8 @@ class ConnexionController extends AbstractController
         $userRepository = $this->getDoctrine()->getRepository(User::class);
         $user = $userRepository->findOneBy(['email' => $email]);
 
-        if (!$user || !$password->isPasswordValid($user, $password)) { // Gérer les erreurs d'authentification, par exemple, afficher un message d'erreur.
-         } 
+        //if (!$user || !$password->isPasswordValid($user, $password)) { // Gérer les erreurs d'authentification, par exemple, afficher un message d'erreur.
+         //} 
 
 
 
