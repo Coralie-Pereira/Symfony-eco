@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\User;
 use App\Form\InscriptionType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,22 +14,53 @@ class InscriptionController extends AbstractController
     #[Route("/inscription", name:"app_inscription")]
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-       $user = new User();
-       $form = $this->createForm(InscriptionType::class, $user);
-       
-       $form->handleRequest($request); // hydratation du form 
-       if($form->isSubmitted() && $form->isValid()){ // test si le formulaire a été soumis et s'il est valide
-        $user -> setScore(16);
-        $user->setPassword($passwordEncoder->encodePassword($user, $user->getPassword())); //Hash password
-        $user -> setCreatedAt(new \DateTimeImmutable());
-        
-        $em = $this->getDoctrine()->getManager(); // on récupère la gestion des entités
-        $em->persist($user); // on effectue les mise à jours internes
-        $em->flush(); // on effectue la mise à jour vers la base de données
-        return $this->redirectToRoute('app_challenge_list'); // on redirige vers la route show_task avec l'id du post créé ou modifié 
-      }
 
-      return $this->render('inscription.html.twig', ['form' => $form->createView()]);
+        $user = new User();
+        $form = $this->createForm(InscriptionType::class, $user);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $username = $user->getUsername();
+            $email = $user->getEmail();
+
+            $existingUser = $this->getDoctrine()
+                ->getRepository(User::class)
+                ->findOneBy(['username' => $username]);
+
+            $existingEmail = $this->getDoctrine()
+                ->getRepository(User::class)
+                ->findOneBy(['email' => $email]);
+
+            if($existingUser) {
+                // Le nom d'utilisateur existe déjà
+                $this->addFlash('error', 'Ce nom d\'utilisateur est déjà utilisé.');
+            }
+
+
+            if($existingEmail) {
+                // L'email existe déjà
+                $this->addFlash('error', 'Cet email est déjà enregistré.');
+            }
+
+            if($existingUser || $existingEmail) {
+                // Rediriger vers la page d'inscription avec les messages d'erreur
+                return $this->render('inscription.html.twig', ['form' => $form->createView()]);
+            }
+
+            // Le nom d'utilisateur et l'email n'existent pas encore, procédez à l'ajout
+            $user->setScore(0);
+            $user->setPassword($passwordEncoder->encodePassword($user, $user->getPassword()));
+            $user->setCreatedAt(new \DateTimeImmutable());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('success', 'Inscription réussie !');
+            return $this->redirectToRoute('app_challenge_list');
+        }
+
+        return $this->render('inscription.html.twig', ['form' => $form->createView()]);
     }
-
 }
