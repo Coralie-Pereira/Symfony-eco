@@ -34,7 +34,7 @@ class Challenge
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?User $createdBy = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
