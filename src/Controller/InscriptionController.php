@@ -30,7 +30,6 @@ class InscriptionController extends AbstractController
       // return $this->redirectToRoute('route_username', ['username' => $user->getPseudo()]);
     }
 
-
     /**
      * @Route("/{username}", name="route_username")
      */
