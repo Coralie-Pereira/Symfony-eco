@@ -9,8 +9,8 @@
 {% endfor %} #}
 
 
-{{ dump(challengeList[0]) }}
+{# {{ dump(challengeList) }} #}
 
 {% for challenge in challengeList %}
-<p><php? echo $challenge ?></p>
+<p>{{challenge|json_encode }}</p>
 {% endfor %}
