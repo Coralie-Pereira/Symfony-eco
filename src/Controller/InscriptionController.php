@@ -18,7 +18,7 @@ class InscriptionController extends AbstractController
        
        $form->handleRequest($request); // hydratation du form 
        if($form->isSubmitted() && $form->isValid()){ // test si le formulaire a été soumis et s'il est valide
-        $user -> setScore(0);
+        $user -> setScore(16);
         $user->setPassword($passwordEncoder->encodePassword($user, $user->getPassword())); //Hash password
         $user -> setCreatedAt(new \DateTimeImmutable());
         

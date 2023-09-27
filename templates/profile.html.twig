@@ -1,1 +1,16 @@
-{{username}}
+{# templates/profile/show.html.twig #}
+
+{# {% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Profil de {{ user.getUsername() }}</h1>
+    <p>Email: {{ user.getEmail() }}</p>
+    {# Affichez d'autres informations sur l'utilisateur ici #}
+{# {% endblock %} } #}
+{{user.getUsername()}}
+{{user.getEmail()}}
+{{user.getScore()}}
+{{user.getcreatedAt()|date("d/m/Y")}}
+
+{# <a href="{{ path('app_inscription') }}" class="text-2xl cursor-pointer">Vous n'avez pas de compte ?</a> #}
+
