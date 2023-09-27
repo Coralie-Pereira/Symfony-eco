@@ -12,6 +12,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AdminController extends AbstractController
 {
+
+    // public function checkIfAdmin(User $user){
+    //     if($user.getRole()!=100){
+    //         return $this->redirectToRoute('accueil');
+    //     }
+    // }
+
     #[Route("/admin", name:"admin_pannel")]
     public function showPannel(){
         return $this->render('admin-pannel.html.twig');
