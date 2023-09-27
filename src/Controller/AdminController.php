@@ -12,6 +12,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AdminController extends AbstractController
 {
+    #[Route("/admin", name:"admin_pannel")]
+    public function showPannel(){
+        return $this->render('admin-pannel.html.twig');
+    }
+
+
     #[Route("/admin/add-challenge", name:"admin_add_challenge")]
     public function addChallenge(Request $request)
     {
@@ -31,6 +37,7 @@ class AdminController extends AbstractController
         $em = $this->getDoctrine()->getManager(); // on récupère la gestion des entités
         $em->persist($challenge); // on effectue les mise à jours internes
         $em->flush(); // on effectue la mise à jour vers la base de données
+        return $this->redirectToRoute('admin_pannel');
         }
     return $this->render('admin-challenge.html.twig', ['form' => $form->createView()]);
     }
@@ -43,6 +50,7 @@ class AdminController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){ // test si le formulaire a été soumis et s'il est valide
             $em = $this->getDoctrine()->getManager(); // on récupère la gestion des entités
             $em->flush(); // on effectue la mise à jour vers la base de données
+            return $this->redirectToRoute('admin_pannel');
             }
 
         return $this->render('admin-challenge.html.twig', ['form' => $form->createView()]);
@@ -54,6 +62,6 @@ class AdminController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->remove($challenge);
         $em->flush();
-        return $this->redirectToRoute('admin_add_challenge');
+        return $this->redirectToRoute('admin_pannel');
     }
 }
