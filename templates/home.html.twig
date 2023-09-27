@@ -5,6 +5,7 @@
     <h1 class="absolute text-2xl">Défis</h1>
     {% if app.user %}
       {# rediriger vers la page profil en fait pas vers la page inscription #}
+      {# a faire asap #}
       <a href="{{ path('app_inscription') }}" class="text-2xl cursor-pointer">{{ app.user.username }}</a>
     {% else %}
       <a href="{{ path('app_login') }}" class="text-2xl cursor-pointer">Connexion</a>
