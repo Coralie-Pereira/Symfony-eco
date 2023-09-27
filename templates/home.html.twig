@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-  <div class="flex justify-around items-center mt-5">
-    <h1 class="text-2xl font-semibold -ml-16">Green Challenges</h1>
-    <h1 class="absolute text-2xl">Défis</h1>
+  <div class="flex justify-between items-center mt-5">
+    <h1 class="text-2xl font-semibold  mx-10">Green Challenges</h1>
+    <h1 class="text-2xl ">Défis</h1>
+    <h1 class="text-2xl ">Scores</h1>
     {% if app.user %}
       {# rediriger vers la page profil en fait pas vers la page inscription #}
       {# a faire asap #}
-      <a href="{{ path('app_profile') }}" class="text-2xl cursor-pointer">{{ app.user.username }}</a>
+      <a href="{{ path('app_profile') }}" class="text-2xl cursor-pointer mx-10">{{ app.user.username }}</a>
     {% else %}
-      <a href="{{ path('app_login') }}" class="text-2xl cursor-pointer">Connexion</a>
+      <a href="{{ path('app_login') }}" class="text-2xl cursor-pointer mx-10">Connexion</a>
     {% endif %}
   </div>
 

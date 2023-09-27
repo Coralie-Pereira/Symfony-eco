@@ -3,12 +3,22 @@
 
 <p>Pseudo : {{challenge.getTitle()}}</p>
 <p>Points : {{challenge.getPoints()}}</p>
-<p>Category : {{challenge.getCategory()}}</p>
+<p>Category : {{challenge.getCategory()}}</p>Button
 <p>Date finale : {{challenge.getDeadline()|date("d/m/Y")}}
 <p>----------------------------------------------</p>
 {% endfor %} #}
 
+{% extends 'base.html.twig' %}
 
-{% for challenge in challengeList %}
-{{dump(challenge)}}<br>
-{% endfor %}
+{% block body %}
+
+  {% for challenge in challengeList %}
+    {{ dump(challenge) }}<br>
+    <div class="flex justify-center mt-16">
+        <button type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Commencer</button>
+    </div>
+    <br>
+  {% endfor %}
+
+
+{% endblock %}
