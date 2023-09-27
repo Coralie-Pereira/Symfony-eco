@@ -17,7 +17,7 @@ class ChallengeListController extends AbstractController
         $challenge->setCategory($data[2]);
         $challenge->setSubcategory($data[3]);
         $challenge->setDescription($data[5]);
-        $challenge -> setPoints(10);
+        $challenge -> setPoints(rand(5,15));
         $challenge -> setCreatedAt(new \DateTimeImmutable());
         $challenge -> setDeadline(new \DateTimeImmutable());
         $challenge -> setCreatedBy($this->getUser());
