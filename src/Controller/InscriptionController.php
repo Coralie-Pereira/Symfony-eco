@@ -14,6 +14,7 @@ class InscriptionController extends AbstractController
     #[Route("/inscription", name:"app_inscription")]
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
+
         $user = new User();
         $form = $this->createForm(InscriptionType::class, $user);
 
@@ -35,6 +36,7 @@ class InscriptionController extends AbstractController
                 // Le nom d'utilisateur existe déjà
                 $this->addFlash('error', 'Ce nom d\'utilisateur est déjà utilisé.');
             }
+
 
             if($existingEmail) {
                 // L'email existe déjà
