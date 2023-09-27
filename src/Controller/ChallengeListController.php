@@ -10,6 +10,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ChallengeListController extends AbstractController
 {
+
+   
+
     #[Route("/challenge-list", name:"app_challenge_list")]
     public function main()
     {
@@ -20,6 +23,7 @@ class ChallengeListController extends AbstractController
                 if ($lineCount >= 2) {
                     $challenges[] = $data;
                 }
+                
                 $lineCount++;
             }
             return $this->render('challenge-list.html.twig', ['challengeList' => $challenges]);
