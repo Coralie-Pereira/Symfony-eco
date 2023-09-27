@@ -38,7 +38,7 @@ class ConnexionController extends AbstractController
             // ->add('dueDate', DateType::class)
 
             // création du formulaire
-            ->add('email')
+             ->add('email')
             ->add('passWord',TextType::class,['label' => 'Mot de passe'])
             ->add('save', SubmitType::class)
             ->getForm();
