@@ -18,12 +18,12 @@ class InscriptionController extends AbstractController
        $form->handleRequest($request); // hydratation du form 
        if($form->isSubmitted() && $form->isValid()){ // test si le formulaire a été soumis et s'il est valide
         $em = $this->getDoctrine()->getManager(); // on récupère la gestion des entités
-        $user -> setRole(0);
+        // $user -> setRole(0);
         $user -> setScore(0);
         $user -> setCreatedAt(new \DateTimeImmutable());
         $em->persist($user); // on effectue les mise à jours internes
         $em->flush(); // on effectue la mise à jour vers la base de données
-        return $this->redirectToRoute('route_username', ['username' => $user->getPseudo()]); // on redirige vers la route show_task avec l'id du post créé ou modifié 
+        return $this->redirectToRoute('route_username', ['username' => $user->getUsername()]); // on redirige vers la route show_task avec l'id du post créé ou modifié 
       }
       
       return $this->render('inscription.html.twig', ['form' => $form->createView()]);
