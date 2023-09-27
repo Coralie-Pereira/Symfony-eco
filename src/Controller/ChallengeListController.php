@@ -14,7 +14,6 @@ class ChallengeListController extends AbstractController
     public function main()
     {
         // $challenges = $this -> getDoctrine()->getRepository(Challenge::class)->findAll();
-        // return $this->render('challenge-list.html.twig', ['challengeList' => $challenges]);
         $lineCount = 0;
         if (($open = fopen("../data/ecogestes.csv", "r")) !== false) {
             while (($data = fgetcsv($open, 1000, ",")) !== false) {
@@ -26,6 +25,7 @@ class ChallengeListController extends AbstractController
             return $this->render('challenge-list.html.twig', ['challengeList' => $challenges]);
             
         }
+        // return $this->render('challenge-list.html.twig', ['challengeList' => [1,2,3]]);
     }
 
 }

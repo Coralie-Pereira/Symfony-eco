@@ -20,8 +20,7 @@ class ConnexionController extends AbstractController
     
         // création de taches 
         $User = new User();
-        $User->setPseudo("coco");
-        $User->setRole(16);
+        $User->setUsername("coco");
         $User->setScore(500);
         $User->setCreatedAt(\DateTimeImmutable::createFromFormat("Y-m-d", '2004-06-07'));
 
@@ -29,8 +28,8 @@ class ConnexionController extends AbstractController
         $email = $request->request->get('email');
         $password = $request->request->get('password');
         //Géré l'authentification : Une fois vérifié avec succès les informations d'identification de l'utilisateur, on utilise le composant Symfony Security pour authentifier l'utilisateur.On utilise la classe TokenStorage pour cela.
-        $token = new User($User, null, 'main', $User->getRole());
-        $this->container->get('security.token_storage')->setToken($token);
+        // $token = new User($User, null, 'main', $User->getRole());
+        // $this->container->get('security.token_storage')->setToken($token);
 
 
 
