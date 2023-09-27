@@ -1,3 +1,18 @@
-{{ form(form) }}
 
-<span class="text-gray-500">Je sais pas</span>
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+  {% endblock %}
+</head>
+<body>
+  <h1 class="text-3xl font-bold underline">
+    Hello world!
+  </h1>
+  {{ form(form) }}
+</body>
+</html>
