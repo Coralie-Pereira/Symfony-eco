@@ -18,10 +18,22 @@ class FinishChallengeController extends AbstractController
 
         $userChallenge = $this->getDoctrine()->getRepository(UserChallenge::class)->find($user_challenge_id);
         $userChallenge->setStatus(2);
+        $this->addUserPoints($userChallenge->getChallenge()->getPoints());
         $em = $this->getDoctrine()->getManager();
         $em->persist($userChallenge);
         $em->flush();
 
         return $this->redirectToRoute('app_challenge_list');
     }
+
+    public function addUserPoints(int $challengePoints)
+    {
+        $user = $this->getUser();
+        $user->setScore($user->getScore() + $challengePoints);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+    }
+
+
 }

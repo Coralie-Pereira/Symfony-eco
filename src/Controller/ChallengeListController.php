@@ -52,4 +52,5 @@ class ChallengeListController extends AbstractController
         }
         return $userChallengesArray;
     }
+
 }
