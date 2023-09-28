@@ -12,12 +12,41 @@
 
 {% block body %}
 
+  <div class="flex justify-between items-center py-3 bg-emerald-200"> 
+    <a href="{{ path('app_home') }}" class="flex w-1/12 h-1/12 cursor-pointer">
+      <img src="assets/logo.png" class="flex w-1/3 h-1/3 ml-4">
+    </a>
+    <a href="{{ path('app_home') }}" class="absolute text-2xl font-semibold ml-20 cursor-pointer ">Green Challenges</a>
+    <a href="{{ path('app_login') }}" class="text-2xl mx-10">Défis</a>
+    <a href="{{ path('app_login') }}" class="text-2xl mx-10">Scores</a>
+    {% if app.user %}
+      <a href="{{ path('app_profile') }}" class="text-2xl cursor-pointer mx-10">{{ app.user.username }}</a>
+    {% else %}
+      <a href="{{ path('app_login') }}" class="text-2xl cursor-pointer mx-10">Connexion</a>
+    {% endif %}
+  </div>
+
+    {% if app.user == '' %}
+      <div class="flex flex-col mt-16 mx-auto justify-center">
+        <h1 class="mx-auto">Connectez-vous pour pouvoir commencer à accomplir le défis !</h1>
+        <div class="flex mt-10 mx-auto">
+        <a type="submit" class="block mx-auto text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Commencer</a>
+      </div>
+      </div>
+      
+    {% endif %}
+
   {% for challenge in challengeList %}
-    {{ dump(challenge) }}<br>
-    <div class="flex justify-center mt-16">
-        <button type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Commencer</button>
+    <div class="mt-10">
+
+      {{ dump(challenge) }}<br>
+        {% if app.user %}
+          <div class="flex justify-center mt-16">
+              <button type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Commencer</button>
+          </div>
+        {% endif %}
+        <br>
     </div>
-    <br>
   {% endfor %}
 
 
