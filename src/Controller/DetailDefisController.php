@@ -11,11 +11,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DetailDefisController extends AbstractController
 {
-    #[Route("/detail-defis/{challengeIdd}", name:"app_DetailDefisController")]
+    #[Route("/detail-defis/{challengeId}", name:"app_DetailDefisController")]
     public function main($challengeId)
     {
         //recuperer un challenge ou l'id cst 1 a utiliser que si jai une table 
-        //$challenges = $this -> getDoctrine()->getRepository(Challenge::class)->findOneBy($challengeId);
+       // $challenges = $this -> getDoctrine()->getRepository(Challenge::class)->findOneBy($challengeId);
         $lineCount = 0;
         if (($open = fopen("../data/ecogestes.csv", "r")) !== false) {
             while (($data = fgetcsv($open, 1000, ",")) !== false) {
