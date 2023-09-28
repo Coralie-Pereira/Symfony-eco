@@ -25,9 +25,10 @@
       {% else %}
           {% set bgClass = loop.index0 == 0 ? 'text-white bg-gradient-to-r from-orange-500 to-yellow-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 font-medium rounded-2xl text-sm px-6 py-3.5 text-center mr-2 mb-2' : 
           loop.index0 == 1 ? 'text-white bg-gradient-to-r from-slate-500 to-gray-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-slate-300 dark:focus:ring-slate-800 font-medium rounded-2xl text-sm px-6 py-3.5 text-center mr-2 mb-2' : 
-          loop.index0 == 2 ? 'text-white bg-gradient-to-r from-orange-500 to-amber-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 font-medium rounded-2xl text-sm px-6 py-3.5 text-center mr-2 mb-2' : '' %}
+          loop.index0 == 2 ? 'text-white bg-gradient-to-r from-orange-500 to-amber-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 font-medium rounded-2xl text-sm px-6 py-3.5 text-center mr-2 mb-2' : 
+          loop.index0 > 2 ? 'flex justify-around text-white bg-gradient-to-r from-stone-400 to-gray-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-stone-300 dark:focus:ring-stone-800 font-medium rounded-2xl text-sm px-6 py-3.5 text-center mr-2 mb-2' %}
           <div class="{{ bgClass }}">
-            <span class="flex justify-around">{{ loop.index + 1}} {{ user.username }} {{ user.score }}</span>
+            <span class="">{{ loop.index + 1}} {{ user.username }} {{ user.score }}</span>
           </div>
       {% endif %}<br>
       </div>
