@@ -7,10 +7,50 @@
     <p>Email: {{ user.getEmail() }}</p>
     {# Affichez d'autres informations sur l'utilisateur ici #}
 {# {% endblock %} } #}
-{{user.getUsername()}}
-{{user.getEmail()}}
-{{user.getScore()}}
-{{user.getcreatedAt()|date("d/m/Y")}}
+
+{% extends 'base.html.twig' %}
+{% block body  %} 
+
+        <div class="bg-cover h-screen bg-[url('/assets/backgroundSymfony.png')]">
+
+        <div class="flex justify-around items-center text-2xl text-lime-700 font-bold">
+                <div class="flex flex-wrap justify-center">
+                        <div class="w-1/6  px-4">
+                        <img class="mt-5" src="assets/logo.png">
+                        </div>
+                </div>
+        </div>
+
+
+         <div class="flex justify-center gap-7 items-center my-10 text-2xl text-lime-700 font-bold">
+        <p class="flex mt-5 text-4xl text-lime-700 font-bold">Profile</p>
+        </div>
+
+        <div class="flex justify-center gap-7 items-center my-10 text-2xl text-lime-700 font-bold">
+        <p class="flex my-10 text-2xl text-lime-700 font-bold">Pseudo : </p>
+                {{user.getUsername()}}
+        </div>
+
+        <div class="flex justify-center gap-7 items-center my-10 text-2xl text-lime-700 font-bold">
+        <p class="flex my-10 text-2xl text-lime-700 font-bold">Email : </p>
+                 {{user.getEmail()}}
+        </div>
+
+        <div class="flex justify-center gap-7 items-center my-10 text-2xl text-lime-700 font-bold">
+        <p class="flex my-10 text-2xl text-lime-700 font-bold">Score : </p>
+                {{user.getScore()}}
+        </div>
+
+
+        <div class="flex justify-center gap-7 items-center my-10 text-2xl text-lime-700 font-bold">
+        <p class="flex my-10 text-2xl text-lime-700 font-bold">Date de création : </p>
+                {{user.getcreatedAt()|date("d/m/Y")}}
+        </div>
+
+
+       </div>
+       
 
 {# <a href="{{ path('app_inscription') }}" class="text-2xl cursor-pointer">Vous n'avez pas de compte ?</a> #}
 
+{% endblock %}
