@@ -16,7 +16,10 @@ class ChallengeListController extends AbstractController
     #[Route("/challenge-list", name:"app_challenge_list")]
     public function main()
     {
-        $userChallenges = $this -> getCurrentChallenges();
+        $userChallenges = [];
+        if($this->getUser()!=null){
+            $userChallenges = $this -> getCurrentChallenges();
+        }
         $challenges = $this -> getDoctrine()->getRepository(Challenge::class)->findAll();
         return $this->render('challenge-list.html.twig', ['challengeList' => $challenges, 'userChallenges'=>$userChallenges]);
     }

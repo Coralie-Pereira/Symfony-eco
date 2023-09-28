@@ -27,6 +27,7 @@
       </div>
       
     {% endif %}
+{% if app.user %}
 <h1>En cours</h1>
 <p>/////////////////////////////////</p>
 {% if userChallenges %}
@@ -37,6 +38,7 @@
 <p>-----------------------</p>
 {% endfor %}
 {% endif %}
+{% endif %}    
 
 <p>Liste des défis</p>
 <p>/////////////////////////////////</p>

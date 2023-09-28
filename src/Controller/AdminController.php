@@ -21,6 +21,9 @@ class AdminController extends AbstractController
 
     #[Route("/admin", name:"admin_pannel")]
     public function showPannel(){
+        if(!in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true)){
+            return $this->redirectToRoute('app_home');
+        }
         $challenges = $this -> getDoctrine()->getRepository(Challenge::class)->findAll();
         return $this->render('admin-pannel.html.twig', ['challengeList' => $challenges]);
     }
