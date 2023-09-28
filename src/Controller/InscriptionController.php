@@ -49,7 +49,7 @@ class InscriptionController extends AbstractController
             }
 
             // Le nom d'utilisateur et l'email n'existent pas encore, procédez à l'ajout
-            $user->setScore(0);
+            $user->setScore(10000);
             $user->setPassword($passwordEncoder->encodePassword($user, $user->getPassword()));
             $user->setCreatedAt(new \DateTimeImmutable());
 

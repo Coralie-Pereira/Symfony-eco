@@ -6,7 +6,7 @@
     </a>
     <a href="{{ path('app_home') }}" class="absolute text-2xl font-semibold ml-20 cursor-pointer ">Green Challenges</a>
     <a href="{{ path('app_challenge_list') }}" class="text-2xl mx-10">Défis</a>
-    <a href="{{ path('app_challenge_list') }}" class="text-2xl mx-10">Scores</a>
+    <a href="{{ path('app_scores') }}" class="text-2xl mx-10">Scores</a>
     {% if app.user %}
       <a href="{{ path('app_profile') }}" class="text-2xl cursor-pointer mx-10">{{ app.user.username }}</a>
     {% else %}
@@ -21,6 +21,6 @@
   </div>
 
   <div class="flex justify-center mt-16">
-    <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Commencer</button>
+    <a class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Commencer</a>
   </div>
 {% endblock %}
