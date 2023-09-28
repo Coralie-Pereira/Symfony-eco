@@ -12,36 +12,38 @@
     {% if app.user %}
         <div class="flex justify-between">
 
-        <div class="mb-3 text-lime-700">Vous êtes connecter en tant que :  {{ app.user.userIdentifier }}</div>
+        <div class="mb-3 font-bold  text-lime-700 mt-5 ml-5 flex bg-transparent border border-lime-700  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 ">Vous êtes connecter en tant que :  {{ app.user.userIdentifier }}</div>
     
-        <a class="mr-10 text-lime-700 font-bold text-lg" href="{{ path('app_logout') }}">Logout</a>
+        <a class="mr-10 text-lime-700 font-bold text-lg mt-5  flex bg-transparent border border-lime-700 rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 " href="{{ path('app_logout') }}">Logout</a>
 
         </div>
     {% endif %}
 
-<div class="flex justify-center flex-col mt-40">
-        <h1 class="text-lg mb-3 font-weight-normal flex justify-center ">Veuillez vous connecter :</h1>
+<div class="flex justify-center flex-col ">
+        <h1 class="text-3xl mb-3 font-bold  text-lime-700 flex justify-center mt-36 ">Veuillez vous connecter :</h1>
 
-        <div class="flex justify-center ">
-            <label class="text-xl gap-5" for="inputEmail ">Email</label>
-            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+        <div class="flex justify-center gap-5 mt-5">
+            <label class="text-xl  text-lime-700" for="inputEmail ">Email</label>
+            <input class="ml-16 bg-gray-50 border border-lime-700  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5  dark:border-lime-700 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
         </div>
 
-        <div class="flex justify-center mt-10">
-            <label for="inputPassword">Mot de passe</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        <div class="flex justify-center mt-10 gap-5">
+            <label class="text-xl  text-lime-700" for="inputPassword">Mot de passe</label>
+            <input class="form-control    bg-gray-50 border border-lime-700  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5  dark:border-lime-700 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" type="password" name="password" id="inputPassword"  autocomplete="current-password" required>
         </div>
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        <button class="btn btn-lg btn-primary" type="submit">Entrer</button>
+        <div class="flex justify-center">
+            <button class="btn btn-lg btn-primary mt-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-20 rounded" type="submit">Entrer</button>
+        </div>
        
 </div>
     
 </form>
 
 
-<a href="{{ path('app_inscription') }}" class="text-2xl cursor-pointer flex justify-center">Vous n'avez pas de compte ?</a>
+<a href="{{ path('app_inscription') }}" class="text-2xl cursor-pointer flex justify-center  text-lime-700 mt-5">Vous n'avez pas de compte ?</a>
 
 </div>
 
@@ -52,44 +54,3 @@
 
 
 
-
-{# 
-       <div class="bg-cover max-h-full bg-[url('/assets/backgroundSymfony.png')]">
-
-        <div class="flex justify-around items-center text-2xl text-lime-700 font-bold">
-                <div class="flex flex-wrap justify-center">
-                        <div class="w-1/6  px-4">
-                        <img class="mt-5" src="assets/logo.png">
-                        </div>
-                </div>
-        </div>
-
-
-         <div class="flex justify-center gap-7 items-center my-10 text-2xl text-lime-700 font-bold">
-        <p class="flex mt-5 text-4xl text-lime-700 font-bold">Profile</p>
-        </div>
-
-        <div class="flex justify-center gap-7 items-center my-10 text-2xl text-lime-700 font-bold">
-        <p class="flex my-10 text-2xl text-lime-700 font-bold">Pseudo : </p>
-                {{user.getUsername()}}
-        </div>
-
-        <div class="flex justify-center gap-7 items-center my-10 text-2xl text-lime-700 font-bold">
-        <p class="flex my-10 text-2xl text-lime-700 font-bold">Email : </p>
-                 {{user.getEmail()}}
-        </div>
-
-        <div class="flex justify-center gap-7 items-center my-10 text-2xl text-lime-700 font-bold">
-        <p class="flex my-10 text-2xl text-lime-700 font-bold">Score : </p>
-                {{user.getScore()}}
-        </div>
-
-
-        <div class="flex justify-center gap-7 items-center my-10 text-2xl text-lime-700 font-bold">
-        <p class="flex my-10 text-2xl text-lime-700 font-bold">Date de création : </p>
-                {{user.getcreatedAt()|date("d/m/Y")}}
-        </div>
-
-
-       </div> #}
-       
