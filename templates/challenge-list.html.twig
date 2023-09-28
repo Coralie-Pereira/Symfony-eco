@@ -12,7 +12,7 @@
 {# {{ dump(challengeList) }} #}
 
 {% for challenge in challengeList %}
-<p>{{challenge|json_encode }}</p>
+<p>{{dump(challenge)}}</p>
 
 {% endfor %}
 {# {% for challenge in challengeList %}
