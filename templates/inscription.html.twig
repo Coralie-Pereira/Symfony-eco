@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="bg-cover h-screen bg-[url('/assets/backgroundSymfony.png')]">
   {% for flash_message in app.flashes('error') %}
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
         <strong class="font-bold">Erreur !</strong>
@@ -67,8 +68,8 @@
 
   {# {{form(form)}} #}
 
-
+</div>
   {# {{ form(form) }} #}
-
+</div>
 
 {% endblock %}
