@@ -2,27 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\UserChallenges;
+use App\Entity\UserChallenge;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<UserChallenges>
+ * @extends ServiceEntityRepository<UserChallenge>
  *
- * @method UserChallenges|null find($id, $lockMode = null, $lockVersion = null)
- * @method UserChallenges|null findOneBy(array $criteria, array $orderBy = null)
- * @method UserChallenges[]    findAll()
- * @method UserChallenges[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method UserChallenge|null find($id, $lockMode = null, $lockVersion = null)
+ * @method UserChallenge|null findOneBy(array $criteria, array $orderBy = null)
+ * @method UserChallenge[]    findAll()
+ * @method UserChallenge[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserChallengesRepository extends ServiceEntityRepository
+class UserChallengeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, UserChallenges::class);
+        parent::__construct($registry, UserChallenge::class);
     }
 
 //    /**
-//     * @return UserChallenges[] Returns an array of UserChallenges objects
+//     * @return UserChallenge[] Returns an array of UserChallenge objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -36,7 +36,7 @@ class UserChallengesRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?UserChallenges
+//    public function findOneBySomeField($value): ?UserChallenge
 //    {
 //        return $this->createQueryBuilder('u')
 //            ->andWhere('u.exampleField = :val')
