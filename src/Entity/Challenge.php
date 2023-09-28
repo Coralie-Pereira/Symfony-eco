@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ChallengeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -39,6 +41,14 @@ class Challenge
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $deadline = null;
+
+    #[ORM\OneToMany(mappedBy: 'challenge', targetEntity: UserChallenge::class)]
+    private Collection $userChallenges;
+
+    public function __construct()
+    {
+        $this->userChallenges = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -139,6 +149,36 @@ class Challenge
     public function setDeadline(\DateTimeInterface $deadline): static
     {
         $this->deadline = $deadline;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserChallenge>
+     */
+    public function getUserChallenges(): Collection
+    {
+        return $this->userChallenges;
+    }
+
+    public function addUserChallenge(UserChallenge $userChallenge): static
+    {
+        if (!$this->userChallenges->contains($userChallenge)) {
+            $this->userChallenges->add($userChallenge);
+            $userChallenge->setChallenge($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserChallenge(UserChallenge $userChallenge): static
+    {
+        if ($this->userChallenges->removeElement($userChallenge)) {
+            // set the owning side to null (unless already changed)
+            if ($userChallenge->getChallenge() === $this) {
+                $userChallenge->setChallenge(null);
+            }
+        }
 
         return $this;
     }

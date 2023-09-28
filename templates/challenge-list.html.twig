@@ -1,12 +1,3 @@
-{# 
-{% for challenge in challengeList %}
-
-<p>Pseudo : {{challenge.getTitle()}}</p>
-<p>Points : {{challenge.getPoints()}}</p>
-<p>Category : {{challenge.getCategory()}}</p>Button
-<p>Date finale : {{challenge.getDeadline()|date("d/m/Y")}}
-<p>----------------------------------------------</p>
-{% endfor %} #}
 
 {% extends 'base.html.twig' %}
 
@@ -36,14 +27,31 @@
       </div>
       
     {% endif %}
+<h1>En cours</h1>
+<p>/////////////////////////////////</p>
+{% if userChallenges %}
+{% for userChallenge in userChallenges %}
+{{userChallenge.challenge.getTitle()}}<br>
+{{userChallenge.challenge.getCategory()}}<br>
+{{userChallenge.challenge.getPoints()}}<br>
+<p>-----------------------</p>
+{% endfor %}
+{% endif %}
 
+<p>Liste des défis</p>
+<p>/////////////////////////////////</p>
   {% for challenge in challengeList %}
     <div class="mt-10">
 
-      {{ dump(challenge) }}<br>
+
+        {{ challenge.title }}<br>
+        {{ challenge.category }}<br>
+        {{ challenge.points }}<br>
         {% if app.user %}
           <div class="flex justify-center mt-16">
-              <button type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Commencer</button>
+              <button type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+              <a href="{{path('app_add_challenge', {'challenge_id': challenge.id})}}">Commencer
+              </a></button>
           </div>
         {% endif %}
         <br>
