@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\UserChallenge;
+
 
 use App\Entity\Challenge;
 use App\Entity\User;
@@ -70,6 +72,10 @@ class AdminController extends AbstractController
     #[Route("/admin/delete-challenge/{id}", name:"admin_delete_challenge")]
     public function deleteChallenge($id){
         $challenge = $this->getDoctrine()->getRepository(Challenge::class)->find($id);
+
+        $usersChallenges = $challenge->getUserChallenges();
+        dump($usersChallenges);
+        die;
         $em = $this->getDoctrine()->getManager();
         $em->remove($challenge);
         $em->flush();
