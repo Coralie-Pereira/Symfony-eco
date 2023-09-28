@@ -1,13 +1,4 @@
 {# 
-{% for challenge in challengeList %}
-
-<p>Pseudo : {{challenge.getTitle()}}</p>
-<p>Points : {{challenge.getPoints()}}</p>
-<p>Category : {{challenge.getCategory()}}</p>Button
-<p>Date finale : {{challenge.getDeadline()|date("d/m/Y")}}
-<p>----------------------------------------------</p>
-{% endfor %} #}
-
 {% extends 'base.html.twig' %}
 
 
@@ -51,4 +42,20 @@
   {% endfor %}
 
 
-{% endblock %}
+{% endblock %} #}
+{% for challenge in challengeList %}
+
+<button><a href="{{path('app_add_challenge', {'challenge_id': challenge.id})}}">CHOISIR</a></button>
+{{ challenge.id }}<br>
+
+{% endfor %}
+
+
+
+
+
+
+{# {% for challenge in challengeList %}
+<p>{{ dump(challenge) }}</p>
+<button><a href="{{path('app_home')}}">CHOISIR</a></button>
+{% endfor %} #}
