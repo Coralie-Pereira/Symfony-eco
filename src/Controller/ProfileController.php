@@ -19,8 +19,13 @@ class ProfileController extends AbstractController
         $user = $this->getUser();
     
         //direction page web 
-        return $this->render('profile.html.twig', [
-            'user' => $user,
-        ]);
+        if ($user != null){
+            return $this->render('profile.html.twig', [
+                        'user' => $user,
+                    ]);
+        }else{
+            return $this->render('home.html.twig');
+        }
+        
     }
 }
