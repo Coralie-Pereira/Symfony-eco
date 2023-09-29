@@ -29,10 +29,14 @@
         <div class="bg-cover h-screen bg-[url('/assets/backgroundSymfony.png')]">
 
     <div class="p-5">
-         <a class="mr-10 text-lime-700 font-bold text-lg   w-20 text-lime-700 font-bold text-lg  flex bg-transparent border border-lime-700 rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5" href="{{ path('app_logout') }}">Logout</a>
-    </div>
 
-        <div class="flex justify-around items-center text-2xl text-lime-700 font-bold">
+    
+         <a class="mr-10 text-lime-700 font-bold text-lg   w-20 text-lime-700 font-bold text-lg  flex bg-transparent border border-lime-700 rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5" href="{{ path('app_logout') }}">Logout</a>
+
+
+
+
+          <div class="flex justify-around items-center text-2xl text-lime-700 font-bold">
                 <div class="flex flex-wrap justify-center">
                         <div class="w-1/6  px-4">
                         <img class="mt-5" src="assets/logo.png">
@@ -40,36 +44,42 @@
                 </div>
         </div>
 
+    </div>
 
-         <div class="flex justify-center gap-7 items-center my-10 text-2xl text-lime-700 font-bold">
-        <p class="flex mt-5 text-4xl text-lime-700 font-bold">Profile</p>
+       
+
+
+         <div class="flex justify-center gap-7 items-center  text-2xl text-lime-700 font-bold">
+        <p class="flex text-4xl text-lime-700 font-bold">Profile</p>
         </div>
 
-        <div class="flex justify-center gap-7 items-center my-10 text-2xl text-lime-700 font-bold">
-        <p class="flex my-10 text-2xl text-lime-700 font-bold">Pseudo : </p>
+        <div class="flex justify-center gap-7 items-center mt-12  text-2xl text-lime-700 font-bold">
+        <p class="flex  text-2xl text-lime-700 font-bold">Pseudo : </p>
                 {{user.getUsername()}}
         </div>
 
-        <div class="flex justify-center gap-7 items-center mt-5 text-2xl text-lime-700 font-bold">
+        <div class="flex justify-center gap-7 items-center mt-12 text-2xl text-lime-700 font-bold">
         <p class="flex  text-2xl text-lime-700 font-bold">Email : </p>
                  {{user.getEmail()}}
         </div>
 
-        <div class="flex justify-center gap-7 items-center my-10 text-2xl text-lime-700 font-bold">
-        <p class="flex my-10 text-2xl text-lime-700 font-bold">Score : </p>
+        <div class="flex justify-center gap-7 items-center mt-12  text-2xl text-lime-700 font-bold">
+        <p class="flex  text-2xl text-lime-700 font-bold">Score : </p>
                 {{user.getScore()}}
         </div>
 
+        <div class="flex justify-center gap-7 items-center mt-12 text-2xl text-lime-700 font-bold">
+        <p class="flex  text-2xl text-lime-700 font-bold">Défis accomplis : </p>
+                {{nbFinishedChallenges}} sur {{nbTotalChallenges}}
+        </div>
 
-        <div class="flex justify-center gap-7 items-center mt-5 text-2xl text-lime-700 font-bold">
+        <div class="flex justify-center gap-7 items-center mt-12  text-2xl text-lime-700 font-bold">
         <p class="flex  text-2xl text-lime-700 font-bold">Date de création : </p>
                 {{user.getcreatedAt()|date("d/m/Y")}}
         </div>
 
 
-       </div>
-       
 
-{# <a href="{{ path('app_inscription') }}" class="text-2xl cursor-pointer">Vous n'avez pas de compte ?</a> #}
+       </div>
 
 {% endblock %}
