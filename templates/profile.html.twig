@@ -11,14 +11,38 @@
 {% extends 'base.html.twig' %}
 {% block body  %} 
 
+<div class="flex justify-between items-center py-3" style="background-color:#C2FFCD">
+    <a href="{{ path('app_home') }}" class="flex w-1/12 h-1/12 cursor-pointer">
+      <img src="assets/logo.png" class="flex w-1/3 h-1/3 ml-4">
+    </a>
+    <a href="{{ path('app_home') }}" class="absolute text-2xl font-semibold ml-20 cursor-pointer ">Green Challenges</a>
+    <a href="{{ path('app_challenge_list') }}" class="text-2xl mx-10">Défis</a>
+    <a href="{{ path('app_scores') }}" class="text-2xl mx-10">Scores</a>
+    {% if app.user %}
+      <a href="{{ path('app_profile') }}" class="text-2xl cursor-pointer mx-10">{{ app.user.username }}</a>
+    {% else %}
+      <a href="{{ path('app_login') }}" class="text-2xl cursor-pointer mx-10">Connexion</a>
+    {% endif %}
+  </div>
+
         {# mettre le brackground avec une div qui prend toute la page #}
         <div class="bg-cover h-screen bg-[url('/assets/backgroundSymfony.png')]">
 
     <div class="p-5">
-         <a class="mr-10 text-lime-700 font-bold text-lg   w-20 text-lime-700 font-bold text-lg  flex bg-transparent border border-lime-700 rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5" href="{{ path('app_logout') }}">Logout</a>
-    </div>
 
-        <div class="flex justify-around items-center text-2xl text-lime-700 font-bold">
+    <div class="flex ">
+         <a class="mr-10 text-lime-700 font-bold text-lg   w-20 text-lime-700 font-bold text-lg  flex bg-transparent border border-lime-700 rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5" href="{{ path('app_logout') }}">Logout</a>
+
+        
+                {% if "ROLE_ADMIN" in user.getRoles() %}
+                <button type="button" class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                  <a href="{{ path('admin_pannel') }}">Pannel Admin</a>
+                </button>
+                {% endif %}
+        </div>
+
+
+          <div class="flex justify-around items-center text-2xl text-lime-700 font-bold">
                 <div class="flex flex-wrap justify-center">
                         <div class="w-1/6  px-4">
                         <img class="mt-5" src="assets/logo.png">
@@ -26,36 +50,42 @@
                 </div>
         </div>
 
+    </div>
 
-         <div class="flex justify-center gap-7 items-center my-10 text-2xl text-lime-700 font-bold">
-        <p class="flex mt-5 text-4xl text-lime-700 font-bold">Profile</p>
+       
+
+
+         <div class="flex justify-center gap-7 items-center  text-2xl text-lime-700 font-bold">
+        <p class="flex text-4xl text-lime-700 font-bold">Profile</p>
         </div>
 
-        <div class="flex justify-center gap-7 items-center my-10 text-2xl text-lime-700 font-bold">
-        <p class="flex my-10 text-2xl text-lime-700 font-bold">Pseudo : </p>
+        <div class="flex justify-center gap-7 items-center mt-12  text-2xl text-lime-700 font-bold">
+        <p class="flex  text-2xl text-lime-700 font-bold">Pseudo : </p>
                 {{user.getUsername()}}
         </div>
 
-        <div class="flex justify-center gap-7 items-center mt-5 text-2xl text-lime-700 font-bold">
+        <div class="flex justify-center gap-7 items-center mt-12 text-2xl text-lime-700 font-bold">
         <p class="flex  text-2xl text-lime-700 font-bold">Email : </p>
                  {{user.getEmail()}}
         </div>
 
-        <div class="flex justify-center gap-7 items-center my-10 text-2xl text-lime-700 font-bold">
-        <p class="flex my-10 text-2xl text-lime-700 font-bold">Score : </p>
+        <div class="flex justify-center gap-7 items-center mt-12  text-2xl text-lime-700 font-bold">
+        <p class="flex  text-2xl text-lime-700 font-bold">Score : </p>
                 {{user.getScore()}}
         </div>
 
+        <div class="flex justify-center gap-7 items-center mt-12 text-2xl text-lime-700 font-bold">
+        <p class="flex  text-2xl text-lime-700 font-bold">Défis accomplis : </p>
+                {{nbFinishedChallenges}} sur {{nbTotalChallenges}}
+        </div>
 
-        <div class="flex justify-center gap-7 items-center mt-5 text-2xl text-lime-700 font-bold">
+        <div class="flex justify-center gap-7 items-center mt-12  text-2xl text-lime-700 font-bold">
         <p class="flex  text-2xl text-lime-700 font-bold">Date de création : </p>
                 {{user.getcreatedAt()|date("d/m/Y")}}
         </div>
 
 
-       </div>
-       
 
-{# <a href="{{ path('app_inscription') }}" class="text-2xl cursor-pointer">Vous n'avez pas de compte ?</a> #}
+       </div>
 
 {% endblock %}

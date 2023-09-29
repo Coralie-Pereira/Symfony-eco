@@ -18,8 +18,8 @@ class InscriptionType extends AbstractType
             ->add('email', EmailType::class)
             ->add('roles', ChoiceType::class, [
                 'choices' => [
-                    'Role 1' => 'ROLE_USER',
-                    'Role 2' => 'ROLE_ADMIN',
+                    'User' => 'ROLE_USER',
+                    'Admin' => 'ROLE_ADMIN',
                 ],
                 'multiple' => true,
                 'expanded' => true,

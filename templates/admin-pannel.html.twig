@@ -1,15 +1,51 @@
-<h1>Pannel Admin</h1>
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="bg-cover h-screen bg-[url('/assets/backgroundSymfony.png')]">
 
-<button><a href="{{path('admin_add_challenge')}}">Ajouter un défi</a></button>
+  <div class="flex justify-between items-center py-3" style="background-color:#C2FFCD"> 
+    <a href="{{ path('app_home') }}" class="flex w-1/12 h-1/12 cursor-pointer">
+      <img src="assets/logo.png" class="flex w-1/3 h-1/3 ml-4">
+    </a>
+    <a href="{{ path('app_home') }}" class="absolute text-2xl font-semibold ml-20 cursor-pointer ">Green Challenges</a>
+    <a href="{{ path('app_challenge_list') }}" class="text-2xl mx-10">Défis</a>
+    <a href="{{ path('app_scores') }}" class="text-2xl mx-10">Scores</a>
+    {% if app.user %}
+      <a href="{{ path('app_profile') }}" class="text-2xl cursor-pointer mx-10">{{ app.user.username }}</a>
+    {% else %}
+      <a href="{{ path('app_login') }}" class="text-2xl cursor-pointer mx-10">Connexion</a>
+    {% endif %}
+  </div>
 
-{% for challenge in challengeList %}
+  <h1 class="flex justify-center text-3xl font-bold py-8">Pannel Admin</h1>
 
-<p>Titre : {{challenge.getTitle()}}</p>
-<p>Category : {{challenge.getCategory()}}</p>
-<p>Description : {{challenge.getDescription()}}</p>
-<p>Points : {{challenge.getPoints()}}</p>
-{# <p>Date finale : {{challenge.getDeadline()|date("d/m/Y")}} #}
-<button><a href="{{path('admin_edit_challenge', {'id': challenge.id})}}">Modifier</a></button>
-<button><a href="{{path('admin_delete_challenge', {'id': challenge.id})}}">Supprimer</a></button>
-<p>----------------------------------------------</p>
-{% endfor %}
+  <div class="flex justify-center">
+    <button type="button" class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+      <a href="{{path('admin_add_challenge')}}">Ajouter un défi</a>
+    </button>
+  </div>
+
+
+  <div class="">
+    {% for challenge in challengeList %}
+    <div class="p-4 m-4 w-1/2 mx-auto rounded-3xl" style="background-color:#eeffef">
+
+      <div class="mx-16">
+        <span class="font-bold text-xl">{{challenge.getTitle()}}</span><br>
+        <span>Category : {{challenge.getCategory()}}</span><br>
+        <span>Description : {{challenge.getDescription()}}</span><br>
+        <span>Points : {{challenge.getPoints()}}</span>
+      </div>
+      {# <p>Date finale : {{challenge.getDeadline()|date("d/m/Y")}} #}
+      <div class="flex justify-center gap-8 mt-4">
+        <button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+          <a href="{{path('admin_edit_challenge', {'id': challenge.id})}}">Modifier</a>
+        </button>
+        <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+          <a href="{{path('admin_delete_challenge', {'id': challenge.id})}}">Supprimer</a>
+        </button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
