@@ -27,5 +27,6 @@ class UserChallengeController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('app_challenge_list');
-    } 
+    }
+
 }
