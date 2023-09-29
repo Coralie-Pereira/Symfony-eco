@@ -1,0 +1,17 @@
+
+{% extends 'base.html.twig' %}
+{% block body  %} 
+
+        {# mettre le brackground avec une div qui prend toute la page #}
+        <div class="bg-cover h-screen bg-[url('/assets/backgroundSymfony.png')]">
+
+
+{{ dump(detailDefis[0])}}
+
+
+</div>
+       
+
+{# <a href="{{ path('app_inscription') }}" class="text-2xl cursor-pointer">Vous n'avez pas de compte ?</a> #}
+
+{% endblock %}

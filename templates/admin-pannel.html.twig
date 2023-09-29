@@ -1,0 +1,15 @@
+<h1>Pannel Admin</h1>
+
+<button><a href="{{path('admin_add_challenge')}}">Ajouter un défi</a></button>
+
+{% for challenge in challengeList %}
+
+<p>Titre : {{challenge.getTitle()}}</p>
+<p>Category : {{challenge.getCategory()}}</p>
+<p>Description : {{challenge.getDescription()}}</p>
+<p>Points : {{challenge.getPoints()}}</p>
+{# <p>Date finale : {{challenge.getDeadline()|date("d/m/Y")}} #}
+<button><a href="{{path('admin_edit_challenge', {'id': challenge.id})}}">Modifier</a></button>
+<button><a href="{{path('admin_delete_challenge', {'id': challenge.id})}}">Supprimer</a></button>
+<p>----------------------------------------------</p>
+{% endfor %}

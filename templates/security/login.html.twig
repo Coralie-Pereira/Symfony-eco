@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<div class="bg-cover h-screen bg-[url('/assets/backgroundSymfony.png')]">
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="flex justify-between">
+
+        <div class="mb-3 font-bold  text-lime-700 mt-5 ml-5 flex bg-transparent border border-lime-700  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 ">Vous êtes connecter en tant que :  {{ app.user.userIdentifier }}</div>
+    
+        <a class="mr-10 text-lime-700 font-bold text-lg mt-5  flex bg-transparent border border-lime-700 rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 " href="{{ path('app_logout') }}">Logout</a>
+
+        </div>
+    {% endif %}
+
+<div class="flex justify-center flex-col ">
+        <h1 class="text-3xl mb-3 font-bold  text-lime-700 flex justify-center mt-36 ">Veuillez vous connecter :</h1>
+
+        <div class="flex justify-center gap-5 mt-5">
+            <label class="text-xl  text-lime-700" for="inputEmail ">Email</label>
+            <input class="ml-16 bg-gray-50 border border-lime-700  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5  dark:border-lime-700 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+        </div>
+
+        <div class="flex justify-center mt-10 gap-5">
+            <label class="text-xl  text-lime-700" for="inputPassword">Mot de passe</label>
+            <input class="form-control    bg-gray-50 border border-lime-700  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5  dark:border-lime-700 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" type="password" name="password" id="inputPassword"  autocomplete="current-password" required>
+        </div>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <div class="flex justify-center">
+            <button class="btn btn-lg btn-primary mt-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-20 rounded" type="submit">Entrer</button>
+        </div>
+       
+</div>
+    
+</form>
+
+
+<a href="{{ path('app_inscription') }}" class="text-2xl cursor-pointer flex justify-center  text-lime-700 mt-5">Vous n'avez pas de compte ?</a>
+
+</div>
+
+{% endblock %}
+
+
+
+
+
+
