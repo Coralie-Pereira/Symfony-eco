@@ -24,11 +24,9 @@ class ChallengeListController extends AbstractController
         if ($this->getUser()) {
             // Récupérer les défis actuels de l'utilisateur
             $userCurrentChallenges = $this->getCurrentChallenges();
-        }
-        if ($this->getUser()) {
-            // Récupérer les défis terminés de l'utilisateur
             $userFinishChallenges = $this->getFinishChallenges();
         }
+   
 
         // Afficher la liste des défis avec les défis actuels et terminés de l'utilisateur
         return $this->render('challenge-list.html.twig', [
