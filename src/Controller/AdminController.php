@@ -73,9 +73,12 @@ class AdminController extends AbstractController
     public function deleteChallenge($id){
         $challenge = $this->getDoctrine()->getRepository(Challenge::class)->find($id);
 
-        $usersChallenges = $challenge->getUserChallenges();
-        dump($usersChallenges);
-        die;
+        $usersChallenges =  $this->getDoctrine()->getRepository(UserChallenge::class)->findByChallenge($challenge->getId());
+        foreach($usersChallenges as $userChallenge){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($userChallenge);
+            $em->flush();
+        }
         $em = $this->getDoctrine()->getManager();
         $em->remove($challenge);
         $em->flush();

@@ -11,6 +11,9 @@ class AdminChallengeType extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('description')
+            ->add('category')
+            ->add('subcategory')
             ->add('points')
             ->add('add', SubmitType::class)
         ;
