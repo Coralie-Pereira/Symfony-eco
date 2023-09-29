@@ -5,11 +5,25 @@
         {# mettre le brackground avec une div qui prend toute la page #}
         <div class="bg-cover h-screen bg-[url('/assets/backgroundSymfony.png')]">
 
+      
 
+       <div class="p-5 text-4xl text-lime-700 font-bold flex justify-center ">Détail du défi</div>
+
+
+<div class =" text-lime-700   grid h-screen place-items-center  ">
 {{ dump(detailDefis[0])}}
 
 
+<div class="">
+ <a href="{{ path('app_challenge_list') }}"<button class="btn btn-lg btn-primary mt-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-20 rounded  " type="submit">Retour</button></a>
 </div>
+
+
+
+</div>
+
+
+
        
 
 {# <a href="{{ path('app_inscription') }}" class="text-2xl cursor-pointer">Vous n'avez pas de compte ?</a> #}
