@@ -17,18 +17,7 @@ class DetailDefisController extends AbstractController
         //recuperer un challenge ou l'id cst 1 a utiliser que si jai une table 
        $challenge = $this -> getDoctrine()->getRepository(Challenge::class)->find($challengeId);
        return $this->render('detail-defis.html.twig', ['detailDefis' => $challenge]);
-        // $lineCount = 0;
-        // if (($open = fopen("../data/ecogestes.csv", "r")) !== false) {
-        //     while (($data = fgetcsv($open, 1000, ",")) !== false) {
-        //         if ($lineCount >= 2) {
-        //             $challenges[] = $data;
-        //         }
-        //         $lineCount++;
-        //     }
-        //     return $this->render('detail-defis.html.twig', ['detailDefis' => $challenges]);
-            
-        // }
-        // return $this->render('challenge-list.html.twig', ['challengeList' => [1,2,3]]);
+
     }
 
 }
