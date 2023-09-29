@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Validator\Constraints\Length;
 
 class InscriptionController extends AbstractController
 {
@@ -23,6 +24,7 @@ class InscriptionController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $username = $user->getUsername();
             $email = $user->getEmail();
+            $password = $user->getPassword();
 
             $existingUser = $this->getDoctrine()
                 ->getRepository(User::class)
@@ -47,11 +49,24 @@ class InscriptionController extends AbstractController
                 return $this->render('inscription.html.twig', ['form' => $form->createView()]);
             }
 
+            if(strlen($password) < 6 || !preg_match('/[A-Z]/', $password) || !preg_match('/[0-9]/', $password)) {
+                // dump($password);
+                // die;
+                // Le mot de passe n'est pas valide
+                $this->addFlash('error', 'Le mot de passe doit avoir au moins 6 caractères, une majuscule et un chiffre.');
+            return $this->render('inscription.html.twig', ['form' => $form->createView()]);
+            }
+
             // Le nom d'utilisateur et l'email n'existent pas encore, procédez à l'ajout
             $user->setScore(10000);
-            $user->setPassword($passwordEncoder->encodePassword($user, $user->getPassword()));
+
+
+            $user->setPassword($passwordEncoder->encodePassword($user, $password));
+
             $user->setCreatedAt(new \DateTimeImmutable());
             $em = $this->getDoctrine()->getManager();
+
+
             $em->persist($user);
             $em->flush();
 
