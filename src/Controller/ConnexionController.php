@@ -21,7 +21,7 @@ class ConnexionController extends AbstractController
         // création de taches 
         $User = new User();
         $User->setUsername("coco");
-        $User->setScore(500);
+        $User->setScore(0);
         $User->setCreatedAt(\DateTimeImmutable::createFromFormat("Y-m-d", '2004-06-07'));
 
         // RAJOUT MERCREDI MATIN CONNEXION
