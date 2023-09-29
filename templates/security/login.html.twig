@@ -4,6 +4,21 @@
 
 {% block body %}
 <div class="bg-cover h-screen bg-[url('/assets/backgroundSymfony.png')]">
+
+<div class="flex justify-between items-center py-3" style="background-color:#C2FFCD">
+    <a href="{{ path('app_home') }}" class="flex w-1/12 h-1/12 cursor-pointer">
+      <img src="assets/logo.png" class="flex w-1/3 h-1/3 ml-4">
+    </a>
+    <a href="{{ path('app_home') }}" class="absolute text-2xl font-semibold ml-16 cursor-pointer ">Green Challenges</a>
+    <a href="{{ path('app_challenge_list') }}" class="text-2xl mx-10">Défis</a>
+    <a href="{{ path('app_scores') }}" class="text-2xl mx-10">Scores</a>
+    {% if app.user %}
+      <a href="{{ path('app_profile') }}" class="text-2xl cursor-pointer mx-10">{{ app.user.username }}</a>
+    {% else %}
+      <a href="{{ path('app_login') }}" class="text-2xl cursor-pointer mx-10">Connexion</a>
+    {% endif %}
+  </div>
+  
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
