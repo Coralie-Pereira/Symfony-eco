@@ -33,8 +33,8 @@
   {% endif %}
 
   {% if app.user %}
-    <h1  id="en-cours" class="flex justify-center text-3xl font-bold p-8">En cours ⏳</h1>
       {% if userCurrentChallenges %}
+    <h1  id="en-cours" class="flex justify-center text-3xl font-bold p-8">En cours ⏳</h1>
         {% for userCurrentChallenge in userCurrentChallenges %}
       {% if userCurrentChallenge.status == 1  %}
           <div class="flex justify-center items-center">
@@ -100,6 +100,7 @@
 </div>
 
 {% if app.user %}
+{% if finishChallenges %}
 <h1 id="termine" class="flex justify-center text-3xl font-bold p-8">Terminés ✅</h1>
   {% for item in finishChallenges %}
 
@@ -128,6 +129,7 @@
     </div><br>
   </div>
 {% endfor %}
+    {% endif %}
     {% endif %}
 </div>
 </div>

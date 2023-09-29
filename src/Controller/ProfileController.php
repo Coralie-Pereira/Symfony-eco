@@ -16,6 +16,7 @@ class ProfileController extends AbstractController
     {
         // Récupération des données de l'utilisateur à partir de la BDD
         $user = $this->getUser();
+        if($user->getRoles())
     
         // Direction vers la page web appropriée en fonction de la présence de l'utilisateur
         if ($user) {
