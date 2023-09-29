@@ -19,7 +19,7 @@ class UserChallengeController extends AbstractController
         $user_challenge = new UserChallenge();
         $user_challenge->setChallenge($challenge);
         $user_challenge->setUser($user);
-        $user_challenge->setStatus(1);//En cours
+        $user_challenge->setStatus(1);
         $user_challenge->setCreatedAt(new \DateTimeImmutable());
         $user ->addUserChallenge($user_challenge);
         $em = $this->getDoctrine()->getManager();

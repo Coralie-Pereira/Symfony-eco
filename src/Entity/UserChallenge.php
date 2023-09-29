@@ -44,6 +44,13 @@ class UserChallenge
         return $this;
     }
 
+    public function setFinish(string $status): static
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
     public function getUser(): ?User
     {
         return $this->user;
