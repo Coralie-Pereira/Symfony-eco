@@ -37,7 +37,6 @@ class InscriptionController extends AbstractController
                 $this->addFlash('error', 'Ce nom d\'utilisateur est déjà utilisé.');
             }
 
-
             if($existingEmail) {
                 // L'email existe déjà
                 $this->addFlash('error', 'Cet email est déjà enregistré.');
@@ -52,7 +51,6 @@ class InscriptionController extends AbstractController
             $user->setScore(10000);
             $user->setPassword($passwordEncoder->encodePassword($user, $user->getPassword()));
             $user->setCreatedAt(new \DateTimeImmutable());
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
