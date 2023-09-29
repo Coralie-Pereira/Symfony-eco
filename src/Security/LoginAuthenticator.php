@@ -26,12 +26,16 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
     {
     }
 
+    // Méthode pour authentifier l'utilisateur
     public function authenticate(Request $request): Passport
     {
+        // Récupérer l'email à partir de la requête
         $email = $request->request->get('email', '');
 
+        // Stocker le dernier nom d'utilisateur (email) utilisé dans la session
         $request->getSession()->set(Security::LAST_USERNAME, $email);
 
+        // Créer un passeport d'authentification avec les informations de l'utilisateur
         return new Passport(
             new UserBadge($email),
             new PasswordCredentials($request->request->get('password', '')),
@@ -42,17 +46,20 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         );
     }
 
+    // Méthode appelée en cas de succès de l'authentification
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        // Rediriger l'utilisateur vers la dernière page visitée (s'il y en a une)
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
+        // Rediriger vers la liste des défis (exemple)
         return new RedirectResponse($this->urlGenerator->generate('app_challenge_list'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
+    // Méthode pour obtenir l'URL de connexion
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
