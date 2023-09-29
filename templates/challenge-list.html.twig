@@ -33,7 +33,9 @@
             <div class="flex justify-center bg-white shadow-md rounded-lg p-6 mb-6 w-2/3">
               <div class="flex justify-between items-center mb-4 w-full">
                 <div class="w-1/3">
+                <a href="{{path('app_details_defi',{'challengeId': userChallenge.challenge.id})}}">
                   {{ userChallenge.challenge.getTitle() }}
+                </a>
                 </div>
                 <div class="w-1/3 text-center">
                   {{ userChallenge.challenge.getCategory() }}
@@ -50,11 +52,13 @@
 
 <h1 class="text-3xl font-bold p-8">Liste des défis</h1>
   {% for challenge in challengeList %}
-  <div class="flex justify-center items-center">
+  <div class="flex justify-center items-center" >
     <div class="flex justify-center bg-white shadow-md rounded-lg p-6 mb-6 w-2/3">
         <div class="flex justify-between items-center mb-4 w-full">
-        <div class="w-1/3 text-center">
+        <div class="w-1/3 text-center" >
+        <a href="{{path('app_details_defi',{'challengeId': challenge.id})}}">
           {{ challenge.title }}<br>
+        </a>
         </div>
         <div class="w-1/3 text-center">
           {{ challenge.category }}<br>
