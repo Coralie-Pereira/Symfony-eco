@@ -93,6 +93,7 @@ class AdminController extends AbstractController
         foreach($usersChallenges as $userChallenge){
             $em = $this->getDoctrine()->getManager();
             $em->remove($userChallenge);
+            $em->flush();
         }
 
         // Supprimer le défi
