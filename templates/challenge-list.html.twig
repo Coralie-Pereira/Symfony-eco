@@ -16,6 +16,13 @@
     {% endif %}
   </div>
 
+<div class="fixed bottom-5 right-5 p-4 rounded-3xl" style="background-color:white">
+  <a href="#en-cours">⏳ En cours</a><br>
+  <a href="#list-defi">💪 Liste des défis</a><br>
+  <a href="#termine">✅ Terminés</a>
+</div>
+
+  <div>
   {% if app.user == '' %}
     <div class="flex flex-col mt-16 mx-auto justify-center">
       <h1 class="mx-auto">Connectez-vous pour pouvoir commencer à accomplir le défis !</h1>
@@ -26,7 +33,7 @@
   {% endif %}
 
   {% if app.user %}
-    <h1 class="flex justify-center text-3xl font-bold p-8">En cours ⏳</h1>
+    <h1  id="en-cours" class="flex justify-center text-3xl font-bold p-8">En cours ⏳</h1>
       {% if userCurrentChallenges %}
         {% for userCurrentChallenge in userCurrentChallenges %}
       {% if userCurrentChallenge.status == 1  %}
@@ -60,7 +67,7 @@
     {% endif %}
   {% endif %}
 
-<h1 class="flex justify-center text-3xl font-bold p-8">Liste des défis 💪</h1>
+<h1 id="list-defi" class="flex justify-center text-3xl font-bold p-8">Liste des défis 💪</h1>
   {% for challenge in challengeList %}
 
   <div class="flex justify-center items-center" >
@@ -90,6 +97,39 @@
     </div><br>
   </div>
 {% endfor %}
+</div>
+
+{% if app.user %}
+<h1 id="termine" class="flex justify-center text-3xl font-bold p-8">Terminés ✅</h1>
+  {% for item in finishChallenges %}
+
+  <div class="flex justify-center items-center" >
+    <div class="flex justify-center bg-white shadow-md rounded-lg p-6 mb-6 w-2/3">
+        <div class="flex justify-between items-center mb-4 w-full">
+        <div class="w-1/3 text-center" >
+        <a href="{{path('app_details_defi',{'challengeId': item.challenge.id})}}">
+          {{ item.challenge.title }}<br>
+        </a>
+        </div>
+        <div class="w-1/3 text-center">
+          {{ item.challenge.category }}<br>
+        </div>
+        <div class="w-1/3 text-center">
+          {{ item.challenge.points }}<br>
+        </div>
+
+      </div>
+    <br>
+      <div class="flex justify-center">
+        <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+          <a href="{{ path('app_add_challenge', {'challenge_id': item.challenge.id}) }}">Recommencer</a>
+        </button>
+      </div>
+    </div><br>
+  </div>
+{% endfor %}
+    {% endif %}
+</div>
 </div>
 
 {% endblock %}
